@@ -1,4 +1,5 @@
 import React from 'react';
+import Clear from './Clear';
 
 class WinnerMessage extends React.Component{
 
@@ -9,6 +10,10 @@ class WinnerMessage extends React.Component{
         return(
             <div className="winner">
                 <h2>{this.props.winner}</h2>
+                <Clear
+                 clear = {this.props.clear} 
+                 message = "Try Again!"
+                 />
             </div>
             );
     }

@@ -17,9 +17,12 @@ h1{
 .clear{
     width: 100px;
     height: 30px;
-    color: rgb(1, 25, 26);
+    color:white;
+    font-weight: bold;
     background-color: dodgerblue;
+    padding: 3px;
     margin: 1em;
+    
 }
 
 .winner{

@@ -51,7 +51,7 @@ class Board extends React.Component{
         ]
         this.alternate = true;
         this.setState({board:this.board,winner:null,
-        turn:'First Player'
+        turn:'O: First Player'
         })
     }
 
@@ -165,8 +165,14 @@ class Board extends React.Component{
                     </tbody>
                 </table> 
                 </div>
-                <Clear clear = {this.clear}/>
-                <WinnerMessage winner = {this.state.winner}/>
+                <Clear 
+                    clear = {this.clear}
+                    message = "Clear"
+                />
+                <WinnerMessage 
+                    winner = {this.state.winner}
+                    clear = {this.clear}
+                />
             </React.Fragment>
         ); 
     }
