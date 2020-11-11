@@ -3,6 +3,8 @@ import "./Board.css";
 import Element from './Element';
 import Clear from './Clear';
 import WinnerMessage from './WinnerMessage';
+import Turn from './Turn';
+
 class Board extends React.Component{
     constructor(){
         super();
@@ -13,6 +15,7 @@ class Board extends React.Component{
         this.alternate = true;
         this.state = {board:this.board,
                       winner:null,
+                      turn : 'First Player'
         };
     }
 
@@ -22,9 +25,11 @@ class Board extends React.Component{
         }
         if(this.alternate){
             this.alternate = false;
+            this.setState({turn:'Second Player'})
             this.board[row][col] = 1;
         }else{
             this.alternate = true;
+            this.setState({turn:'First Player'})
             this.board[row][col] = 2; 
         }
         this.setState({board:this.board});
@@ -33,6 +38,7 @@ class Board extends React.Component{
             item = 1;
         }else item = 2;
         this.check(item);
+
     }
     clear = () =>{
         this.board = [[null,null,null],
@@ -40,11 +46,13 @@ class Board extends React.Component{
                       [null,null,null]
         ]
         this.alternate = true;
-        this.setState({board:this.board,winner:null})
+        this.setState({board:this.board,winner:null,
+        turn:'First Player'
+        })
     }
 
     // Check Who is Winner 
-    // Shut Shin Sar Algorithm By Sai Nyi
+    // "Shought Shin Sar" Algorithm By Sai Nyi
     check = (item) =>{
         let b = this.state.board;
         for(let i=0;i<3;i++){
@@ -89,7 +97,7 @@ class Board extends React.Component{
               break;
         }
          tr = 0; tc = 0; td = 0;
-         //te = 0;
+         te = 0;
       }
         
     }
@@ -126,6 +134,7 @@ class Board extends React.Component{
         return(
             <React.Fragment>
                 <h1>tic-tac-toe</h1>
+                <Turn turn = {this.state.turn}/>
                 <div>
                 <table>
                     <tbody>

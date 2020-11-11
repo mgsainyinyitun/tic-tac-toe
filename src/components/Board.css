@@ -32,3 +32,13 @@ h1{
     width: 50%;
     text-align: center;
 }
+
+.turn {
+    font-size: 25px;
+    color: rebeccapurple;
+    border: solid;
+    border-width: 1px;
+    margin: 10px;
+    padding: 10px;
+    
+}
