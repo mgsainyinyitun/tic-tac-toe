@@ -40,6 +40,7 @@ class Board extends React.Component{
             item = 1;
         }else item = 2;
         this.check(item);
+        this.checkFinish();
 
     }
 
@@ -104,6 +105,23 @@ class Board extends React.Component{
       }
         
     }
+
+    checkFinish(){
+        const board = this.state.board;
+        let n = 0;
+        for(let i=0;i<3;i++){
+            for(let j=0;j<3;j++){
+                if(board[i][j] === null){
+                    n = n+1;
+                }
+            }
+        }
+        if(n === 0){
+            this.setState({winner:"Draw, please Try again!"});
+        }
+    }
+
+
   
     renderRow = (row)=>{
         return(
