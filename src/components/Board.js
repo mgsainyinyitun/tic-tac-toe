@@ -20,7 +20,7 @@ class Board extends React.Component{
     }
 
     play = (row,col)=>{
-        if(this.board[row][col] === 1 || this.board[row][col] === 0){
+        if(this.board[row][col] === 1 || this.board[row][col] === 2){
             return;
         }
         if(this.alternate){
