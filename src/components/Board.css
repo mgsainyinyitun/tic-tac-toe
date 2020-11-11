@@ -27,7 +27,7 @@ h1{
     border-width: 3px;
     border-color: red;
     position: absolute;
-    background-color: blue;
+    background-color:rgba(0, 0, 255, 0.8);
     color: white;
     width: 50%;
     text-align: center;
