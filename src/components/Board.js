@@ -67,7 +67,18 @@ class Board extends React.Component{
               }
           }
           
-          let te = b[2][0] + b[0][2] + b[1][1];
+          let te = 0;
+
+          if(b[2][0] === item){
+              te = te+b[2][0]
+          }
+          if(b[1][1] === item){
+              te = te+b[1][1];
+          }
+          if(b[0][2] === item ){
+              te = te + b[0][2];
+          }
+
           
           if( tr === 3 || tr === 6 || tc === 3 || tc === 6 || td === 3 || td === 6 || te === 3 || te === 6){
               if (item === 1){
@@ -77,7 +88,8 @@ class Board extends React.Component{
               this.setState({winner:'Cross is Winner'});
               break;
         }
-        tr = 0;
+         tr = 0; tc = 0; td = 0;
+         //te = 0;
       }
         
     }
