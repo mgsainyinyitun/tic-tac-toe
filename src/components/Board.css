@@ -1,0 +1,15 @@
+table{
+    border: solid;
+    border-width: 1px;
+}
+td{
+    border: solid;
+    border-width: 3px;
+    border-color: blue;
+    width: 100px;
+    height: 100px;
+}
+h1{
+    color: blue;
+    font-size: 2.8em;
+}
