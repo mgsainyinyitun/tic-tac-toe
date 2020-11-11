@@ -21,3 +21,14 @@ h1{
     background-color: dodgerblue;
     margin: 1em;
 }
+
+.winner{
+    border: solid;
+    border-width: 3px;
+    border-color: red;
+    position: absolute;
+    background-color: blue;
+    color: white;
+    width: 50%;
+    text-align: center;
+}

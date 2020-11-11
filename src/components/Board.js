@@ -2,7 +2,7 @@ import React from 'react';
 import "./Board.css";
 import Element from './Element';
 import Clear from './Clear';
-
+import WinnerMessage from './WinnerMessage';
 class Board extends React.Component{
     constructor(){
         super();
@@ -11,7 +11,9 @@ class Board extends React.Component{
                       [null,null,null]
         ]
         this.alternate = true;
-        this.state = {board:this.board};
+        this.state = {board:this.board,
+                      winner:null,
+        };
     }
 
     play = (row,col)=>{
@@ -23,10 +25,14 @@ class Board extends React.Component{
             this.board[row][col] = 1;
         }else{
             this.alternate = true;
-            this.board[row][col] = 0; 
+            this.board[row][col] = 2; 
         }
         this.setState({board:this.board});
-        console.log(this.state);
+        let item = 0;
+        if(this.alternate === false){
+            item = 1;
+        }else item = 2;
+        this.check(item);
     }
     clear = () =>{
         this.board = [[null,null,null],
@@ -34,7 +40,46 @@ class Board extends React.Component{
                       [null,null,null]
         ]
         this.alternate = true;
-        this.setState({board:this.board})
+        this.setState({board:this.board,winner:null})
+    }
+
+    // Check Who is Winner 
+    // Shut Shin Sar Algorithm By Sai Nyi
+    check = (item) =>{
+        let b = this.state.board;
+        for(let i=0;i<3;i++){
+          let tr = 0;let tc = 0;let td = 0;
+          for(let j=0;j<3;j++){
+              if(b[i][j] === item){
+                tr = tr+b[i][j];
+              }
+          }
+
+          for (let j=0;j<3;j++){
+              if(b[j][i] === item ){
+                  tc = tc + b[j][i];
+              }
+          }
+
+          for(let j=0;j<3;j++){
+              if(b[j][j] === item){
+                  td = td + b[j][j];
+              }
+          }
+          
+          let te = b[2][0] + b[0][2] + b[1][1];
+          
+          if( tr === 3 || tr === 6 || tc === 3 || tc === 6 || td === 3 || td === 6 || te === 3 || te === 6){
+              if (item === 1){
+                  this.setState({winner:'Circle is Winner'});
+                  break;
+              }
+              this.setState({winner:'Cross is Winner'});
+              break;
+        }
+        tr = 0;
+      }
+        
     }
   
     renderRow = (row)=>{
@@ -64,6 +109,7 @@ class Board extends React.Component{
             </tr>
         );
     }
+
     render(){
         return(
             <React.Fragment>
@@ -78,6 +124,7 @@ class Board extends React.Component{
                 </table> 
                 </div>
                 <Clear clear = {this.clear}/>
+                <WinnerMessage winner = {this.state.winner}/>
             </React.Fragment>
         ); 
     }
