@@ -29,6 +29,7 @@ h1{
     border: solid;
     border-width: 3px;
     border-color: red;
+    border-radius: 15px;
     position: absolute;
     background-color:rgba(0, 0, 255, 0.8);
     color: white;
