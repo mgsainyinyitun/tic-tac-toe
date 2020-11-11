@@ -4,7 +4,6 @@ import Element from './Element';
 import Clear from './Clear';
 import WinnerMessage from './WinnerMessage';
 import Turn from './Turn';
-
 class Board extends React.Component{
     constructor(){
         super();
@@ -15,21 +14,24 @@ class Board extends React.Component{
         this.alternate = true;
         this.state = {board:this.board,
                       winner:null,
-                      turn : 'First Player'
+                      turn : 'O: First Player'
         };
     }
 
     play = (row,col)=>{
+        if(this.state.winner !== null){
+            return;
+        }
         if(this.board[row][col] === 1 || this.board[row][col] === 2){
             return;
         }
         if(this.alternate){
             this.alternate = false;
-            this.setState({turn:'Second Player'})
+            this.setState({turn:'X: Second Player'})
             this.board[row][col] = 1;
         }else{
             this.alternate = true;
-            this.setState({turn:'First Player'})
+            this.setState({turn:'O: First Player'})
             this.board[row][col] = 2; 
         }
         this.setState({board:this.board});
@@ -40,6 +42,7 @@ class Board extends React.Component{
         this.check(item);
 
     }
+
     clear = () =>{
         this.board = [[null,null,null],
                       [null,null,null],
